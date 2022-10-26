@@ -1,4 +1,4 @@
-# fluxcd-sysdig-iac
+# fluxcd-sysdig
 
 ### Info
 This repository is based on the great tutorial example prepared by [fluxcd team](https://github.com/fluxcd/flux2-kustomize-helm-example) and show how-to deploy and manage sysdig-agent and sysdig-admission-controller chart via FluxCD
@@ -7,7 +7,7 @@ This repository is based on the great tutorial example prepared by [fluxcd team]
 
 The Git repository contains the following top directories:
 
-- **apps** dir contains Helm releases with a common configuration for all the clusters and a custom configuration per cluster
+- **apps** dir contains Helm releases with a common configuration for all Kubernetes clusters and for each cluster a specific custom configuration
 - **charts** dir contains Helm chart repository definitions
 - **clusters** dir contains the Flux configuration per cluster
 ```
@@ -36,7 +36,7 @@ The apps configuration is structured into:
 
 The idea is to have a base common settings for Sysdig components, like: collector address/port, access-key, etc.. and then for each cluster change specific Sysdig settings, like for example the cluster name or resources assigned to the agents
 
-**Note** This example repo cover the usage of external secrets but it doesn't cover how-to create them, there are seveal methods and tools for managing kubernetes secret so I don't cover this topic
+**Note** This example cover the usage of external secrets but it doesn't cover how-to create them, there are seveal methods and tools for managing kubernetes secret so I don't cover this topic
 
 ```
 ./apps/
