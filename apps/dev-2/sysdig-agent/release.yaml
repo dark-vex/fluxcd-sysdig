@@ -1,0 +1,31 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: sysdig-deploy
+  namespace: sysdig-agent
+spec:
+  chart:
+    spec:
+      chart: sysdig-deploy
+      # On dev clusters we want to automatically have the latest version of the chart
+      version: ">=1.3.20"
+  values:
+    global:
+      clusterConfig:
+        name: "dev-2"
+
+    agent:
+      resourceProfile: custom
+      resources:
+        requests:
+          cpu: 3
+          memory: 3Gi
+        limits:
+          cpu: 3
+          memory: 3Gi
+      sysdig:
+        settings:
+          prometheus:
+            enabled: true
+            prom_service_discovery: true

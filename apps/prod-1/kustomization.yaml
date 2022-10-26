@@ -5,4 +5,12 @@ namespace: sysdig-agent
 resources:
   - ../common/sysdig-agent
 patchesStrategicMerge:
-  - sysdig-agent/release.yml
+  - sysdig-agent/release.yaml
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: sysdig-admission-controller
+resources:
+  - ../common/sysdig-admission-controller
+patchesStrategicMerge:
+  - sysdig-admission-controller/release.yaml

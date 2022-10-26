@@ -1,0 +1,31 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: sysdig-deploy
+  namespace: sysdig-agent
+spec:
+  chart:
+    spec:
+      chart: sysdig-deploy
+      # On prod clusters we want to have a specific version of sysdig-deploy chart
+      version: 1.3.25
+  values:
+    global:
+      clusterConfig:
+        name: "prod-2"
+
+    agent:
+      resourceProfile: medium
+      sysdig:
+        settings:
+          prometheus:
+            enabled: true
+            prom_service_discovery: true
+
+    nodeAnalyzer:
+      nodeAnalyzer:
+        benchmarkRunner:
+          resources:
+            limits:
+              cpu: 200m
